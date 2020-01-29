@@ -1,0 +1,8 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+<h1>Your form has been submitted, thank you!</h1><br>
+
+{% for item in categories %}
+    <h2> {{item.text}} - {{item.votes}} </h2><br>
+{% endfor %}

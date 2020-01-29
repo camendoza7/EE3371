@@ -1,0 +1,26 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+<h1>Welcome to the Micro 1 Lab Feedback Site!</h1><br>
+
+{% if ec %}
+    <h3> PLEASE SELECT A CATEGORY! </h3>
+{% endif %}
+
+<h3>
+Pick a category that you are struggling with and provide a short text description. <br>
+This information is anonymous and will help us decide what we cover in the short lab workshops! <br>
+We appreciate your time and feedback. <br>
+</h3>
+<form action="{% url 'polls:record' %}" method="post">
+{% csrf_token %}
+{% for choice in categories %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    <label for="choice{{ forloop.counter }}">{{ choice.text }}</label><br>
+{% endfor %}
+<textarea name="Description" class="txt" rows="20" cols="100">
+</textarea>
+<br>
+<br>
+<input type="submit" value="Go">
+</form>
